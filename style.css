@@ -1,11 +1,12 @@
-.headBck {
-    background-color: #1a2369;
-}
 .headTxt {
     text-align: center;
-    color: #9c9c9c;
+    color: #bebebe;
+    background-color: #1a2369;
 }
 .srchCont {
+    border: 1px solid grey;
+}
+.cityCont {
     border: 1px solid grey;
 }
 .input{
