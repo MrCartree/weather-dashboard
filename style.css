@@ -1,6 +1,6 @@
 .headTxt {
     text-align: center;
-    color: #bebebe;
+    color: #dddddd;
     background-color: #1a2369;
 }
 .srchCont {
@@ -8,6 +8,7 @@
 }
 .cityCont {
     border: 1px solid grey;
+    margin-bottom: 20px;
 }
 .input{
     height: 28px;
@@ -17,6 +18,9 @@
     height: 20px;
     text-align: center;
     line-height: normal;
+}
+.fiveDayForecast {
+    border: 1px solid grey;
 }
 .forecastCard {
     border: 1px solid grey;
