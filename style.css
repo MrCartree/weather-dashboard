@@ -1,0 +1,19 @@
+.headBck {
+    background-color: #1a2369;
+}
+.headTxt {
+    text-align: center;
+    color: #9c9c9c;
+}
+.srchCont {
+    border: 1px solid grey;
+}
+.input{
+    height: 28px;
+    line-height: normal;
+}
+.btn{
+    height: 20px;
+    text-align: center;
+    line-height: normal;
+}
