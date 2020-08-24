@@ -1,3 +1,6 @@
+body {
+    background-color: #dddddd;
+}
 .headTxt {
     text-align: center;
     color: #dddddd;
@@ -5,10 +8,14 @@
 }
 .srchCont {
     border: 1px solid grey;
+    background-color: ivory;
+    border-radius: 15px;
 }
 .cityCont {
     border: 1px solid grey;
     margin-bottom: 20px;
+    background-color: ivory;
+    border-radius: 15px;
 }
 .input{
     height: 28px;
@@ -21,7 +28,11 @@
 }
 .fiveDayForecast {
     border: 1px solid grey;
+    background-color: ivory;
+    border-radius: 15px;
 }
 .forecastCard {
     border: 1px solid grey;
+    background-color: ivory;
+    border-radius: 15px;
 }
