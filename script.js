@@ -17,7 +17,7 @@ function inFahrenheit(kelvin) {
 $("#srchBtn").click(function() {
     let forecast = forecastURL(cityNameInput.val());
     $.ajax(forecast).then(function(response) {
-        console.log(response)
+        console.log(response);
         let lattitude = response.city.coord.lat;
         let longitude = response.city.coord.lon;
         $("#cityName").text(response.city.name);
@@ -26,8 +26,8 @@ $("#srchBtn").click(function() {
         $("#windSpeed").text("Wind Speed: " + response.list[0].wind.speed + "MPH");
 
         // second call gathing the information for the UV index and putting it on the page
-        uvIndexUrl();
-        console.log(uvIndexUrl());
+        // uvIndexUrl();
+        // console.log(uvIndexUrl());
         $.ajax(uvIndexUrl()).then(function(info) {
             console.log(info);
             $("#uvIndex").text("UV Index: " + info.current.uvi)
