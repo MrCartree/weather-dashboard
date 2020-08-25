@@ -19,5 +19,7 @@ $("#srchBtn").click(function() {
         console.log(response)
         $("#cityName").text(response.city.name);
         $("#temperature").text("Temperature: " + inFahrenheit(response.list[0].main.temp));
+        $("#humidity").text("Humidity: " + response.list[0].main.humidity + "%");
+        $("#windSpeed").text("Wind Speed: " + response.list[0].wind.speed + "MPH")
     });
 });
