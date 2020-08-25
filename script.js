@@ -27,8 +27,10 @@ $("#srchBtn").click(function() {
 
         // second call gathing the information for the UV index and putting it on the page
         $.ajax(uvIndexUrl()).then(function(info) {
+            let dateTime = info.daily[0].dt;
             console.log(info);
             $("#uvIndex").text("UV Index: " + info.current.uvi)
+
         }) 
 
         // second api call to use lon and lat

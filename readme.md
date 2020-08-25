@@ -7,4 +7,4 @@ Favicon pulled from google images.
 
 This site is deployed [here]()
 
-Authored by [Zach LaFleur]()
+Authored by [Zach LaFleur](https://github.com/MrCartree)
