@@ -25,7 +25,7 @@ $("#srchBtn").click(function() {
         $("#humidity").text("Humidity: " + response.list[0].main.humidity + "%");
         $("#windSpeed").text("Wind Speed: " + response.list[0].wind.speed + "MPH");
 
-        // second call gathing the information for the UV index
+        // second call gathing the information for the UV index and putting it on the page
         uvIndexUrl();
         console.log(uvIndexUrl());
         $.ajax(uvIndexUrl()).then(function(info) {
@@ -35,7 +35,7 @@ $("#srchBtn").click(function() {
 
         // second api call to use lon and lat
         function uvIndexUrl() {
-            return `https://api.openweathermap.org/data/2.5/onecall?lat=${lattitude}&lon=${longitude}&exclude=hourly&appid=${apiKey}`
+            return `https://api.openweathermap.org/data/2.5/onecall?lat=${lattitude}&lon=${longitude}&exclude=minutely,hourly&appid=${apiKey}`
         }
 
 
