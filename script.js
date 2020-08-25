@@ -26,8 +26,6 @@ $("#srchBtn").click(function() {
         $("#windSpeed").text("Wind Speed: " + response.list[0].wind.speed + "MPH");
 
         // second call gathing the information for the UV index and putting it on the page
-        // uvIndexUrl();
-        // console.log(uvIndexUrl());
         $.ajax(uvIndexUrl()).then(function(info) {
             console.log(info);
             $("#uvIndex").text("UV Index: " + info.current.uvi)
