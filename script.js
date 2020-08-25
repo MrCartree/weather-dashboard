@@ -9,9 +9,15 @@ function forecastURL(cityName) {
     return `http://api.openweathermap.org/data/2.5/forecast?q=${cityName},us&APPID=${apiKey}`
 }
 
+function inFahrenheit(kelvin) {
+    return (kelvin - 273.15) * 1.80 + 32;
+}
+
 $("#srchBtn").click(function() {
     let forecast = forecastURL(cityNameInput.val());
     $.ajax(forecast).then(function(response) {
-        console.log(response);
+        console.log(response)
+        $("#cityName").text(response.city.name);
+        $("#temperature").text("Temperature: " + inFahrenheit(response.list[0].main.temp));
     });
 });
