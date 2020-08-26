@@ -13,6 +13,7 @@ function inFahrenheit(kelvin) {
     return (kelvin - 273.15) * 1.80 + 32;
 }
 
+
 // api call on click of the search button which returns the information from the api library
 $("#srchBtn").click(function() {
     let forecast = forecastURL(cityNameInput.val());
@@ -24,19 +25,34 @@ $("#srchBtn").click(function() {
         $("#temperature").text("Temperature: " + inFahrenheit(response.list[0].main.temp));
         $("#humidity").text("Humidity: " + response.list[0].main.humidity + "%");
         $("#windSpeed").text("Wind Speed: " + response.list[0].wind.speed + "MPH");
-
+        
         // second call gathing the information for the UV index and putting it on the page as well as gathering the Forecast information
         $.ajax(uvIndexUrl()).then(function(info) {
             console.log(info);
             $("#uvIndex").text("UV Index: " + info.current.uvi)
             
-            for (let i = 1; i < 6; i++) {
-                let dateTime = info.daily[i].dt;
+            let index = 1;
+            function dateConversion() {
+                let dateTime = info.daily[index].dt;
                 const milliseconds = dateTime * 1000;
                 const dateObject = new Date(milliseconds);
-                console.log(dateObject);
+                let month = dateObject.toLocaleString("en-US", {month: "numeric"});
+                 let day = dateObject.toLocaleString("en-US", {day: "numeric"});
+                let year = dateObject.toLocaleString("en-US", {year: "numeric"});
+                console.log(month + "/" + day + "/" + year);
+                index++
             }
-        }) 
+            for (let i = 1; i < 6; i++) {
+                dateConversion();
+                // let dateTime = info.daily[i].dt;
+                // const milliseconds = dateTime * 1000;
+                // const dateObject = new Date(milliseconds);
+                // let month = dateObject.toLocaleString("en-US", {month: "numeric"});
+                //  let day = dateObject.toLocaleString("en-US", {day: "numeric"});
+                // let year = dateObject.toLocaleString("en-US", {year: "numeric"});
+                // console.log(month + "/" + day + "/" + year);
+            }
+        }); 
 
         // second api call to use lon and lat
         function uvIndexUrl() {
