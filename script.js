@@ -31,7 +31,7 @@ $("#srchBtn").click(function() {
             console.log(info);
             $("#uvIndex").text("UV Index: " + info.current.uvi)
             // Creating a function that will take the info from this specific page and convert the Unix Time to an understandable date.
-            let index = 1;
+            let index = 0;
             function dateConversion() {
                 let dateTime = info.daily[index].dt;
                 const milliseconds = dateTime * 1000;
@@ -39,7 +39,12 @@ $("#srchBtn").click(function() {
                 let month = dateObject.toLocaleString("en-US", {month: "numeric"});
                  let day = dateObject.toLocaleString("en-US", {day: "numeric"});
                 let year = dateObject.toLocaleString("en-US", {year: "numeric"});
+                $(".date").each(function() {
+                    $(this).text(month + "/" + day + "/" + year);
+                });
                 console.log(month + "/" + day + "/" + year);
+                console.log(inFahrenheit(info.daily[index].temp.day));
+                console.log(info.daily[index].humidity);
                 index++
             }
             for (let i = 1; i < 6; i++) {
