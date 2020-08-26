@@ -25,12 +25,17 @@ $("#srchBtn").click(function() {
         $("#humidity").text("Humidity: " + response.list[0].main.humidity + "%");
         $("#windSpeed").text("Wind Speed: " + response.list[0].wind.speed + "MPH");
 
-        // second call gathing the information for the UV index and putting it on the page
+        // second call gathing the information for the UV index and putting it on the page as well as gathering the Forecast information
         $.ajax(uvIndexUrl()).then(function(info) {
-            let dateTime = info.daily[0].dt;
             console.log(info);
             $("#uvIndex").text("UV Index: " + info.current.uvi)
-
+            
+            for (let i = 1; i < 6; i++) {
+                let dateTime = info.daily[i].dt;
+                const milliseconds = dateTime * 1000;
+                const dateObject = new Date(milliseconds);
+                console.log(dateObject);
+            }
         }) 
 
         // second api call to use lon and lat
