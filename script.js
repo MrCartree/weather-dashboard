@@ -5,7 +5,7 @@ let cityNameInput = $("#input");
 
 // this is the api url with my api key plugged in
 function forecastURL(cityName) {
-    return `http://api.openweathermap.org/data/2.5/forecast?q=${cityName},us&APPID=${apiKey}`
+    return `https://api.openweathermap.org/data/2.5/forecast?q=${cityName},us&APPID=${apiKey}`
 }
 
 // function to change temp from kelvin to fahrenheit
