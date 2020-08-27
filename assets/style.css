@@ -12,6 +12,11 @@ body {
     background-color: ivory;
     border-radius: 15px;
 }
+.weatherImg {
+    height: 25px;
+    width: 25px;
+    margin-top: 10px;
+}
 .cityCont {
     border: 1px solid grey;
     margin-bottom: 20px;
@@ -39,14 +44,14 @@ body {
     border-radius: 15px;
     display: inline-block;
 }
-.uvIndexB {
-    background-color: #4d9ac9;
-}
 .uvIndexG {
     background-color: #58c750;
 }
 .uvIndexY {
     background-color: #d9bd50;
+}
+.uvIndexO {
+background-color: #f07930;
 }
 .uvIndexR {
     background-color: #d95050;

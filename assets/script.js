@@ -1,4 +1,6 @@
 const apiKey = "e50c991dffb6aa38fe794e7859d8d281";
+const toStore = [];
+const searchedCity = new Set();
 let cityNameInput = $("#input");
 
 // this is the api url with my api key plugged in
@@ -11,7 +13,7 @@ function inFahrenheit(kelvin) {
     return ((kelvin - 273.15) * 1.80 + 32).toFixed(2);
 }
 
-const searchedCity = new Set();
+// const searchedCities = (localStorage.getItem("searchedCities") && JSON.parse(localStorage.getItem("searchedCities")) || []);
 
 // api call on click of the search button which returns the information from the api library
 $("#srchBtn").click(function () {
@@ -20,6 +22,10 @@ $("#srchBtn").click(function () {
         console.log(response);
         searchedCity.add(cityNameInput.val());
         $(".srchd").text("");
+
+        // searchedCity.keys().forEach(city => toStore.push(city));
+        // localStorage.setItem("searchedCity", JSON.stringify(toStore));
+
         searchedCity.forEach(function (aCity) {
             let liEl = $(`<li>${aCity}</li>`);
             $(".srchd").append(liEl);
@@ -37,12 +43,11 @@ $("#srchBtn").click(function () {
             $("#uvIndex").text("UV Index: " + info.current.uvi);
             // if statments to give a nice color to the UV Index dependant on the risk level.
             if (info.current.uvi <= 2) {
-                $("#uvIndex").addClass("uvIndexB")
-                console.log($("#uvIndex").val())
+                $("#uvIndex").addClass("uvIndexG")
             } else if (info.current.uvi > 2 && info.current.uvi <= 3) {
-                $("#uvIndex").addClass("uvIndexG");
-            } else if (info.current.uvi > 5 && info.current.uvi <= 7) {
                 $("#uvIndex").addClass("uvIndexY");
+            } else if (info.current.uvi > 5 && info.current.uvi <= 7) {
+                $("#uvIndex").addClass("uvIndexO");
             } else {
                 $("#uvIndex").addClass("uvIndexR")
             }
