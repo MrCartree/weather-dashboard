@@ -31,9 +31,11 @@ body {
     border: 1px solid grey;
     background-color: ivory;
     border-radius: 15px;
+    text-align: center;
 }
 .forecastCard {
     border: 1px solid grey;
     background-color: ivory;
     border-radius: 15px;
+    display: inline-block;
 }
