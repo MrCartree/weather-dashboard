@@ -17,6 +17,7 @@ const searchedCity = new Set();
 $("#srchBtn").click(function () {
     let forecast = forecastURL(cityNameInput.val());
     $.ajax(forecast).then(function (response) {
+        console.log(response);
         searchedCity.add(cityNameInput.val());
         $(".srchd").text("");
         searchedCity.forEach(function (aCity) {
@@ -33,6 +34,19 @@ $("#srchBtn").click(function () {
         // second call gathing the information for the UV index and putting it on the page as well as gathering the Forecast information
         $.ajax(uvIndexUrl()).then(function (info) {
             $("#uvIndex").text("UV Index: " + info.current.uvi);
+
+            if (info.current.uvi <= 2) {
+                $("#uvIndex").addClass("uvIndexB")
+                console.log($("#uvIndex").val())
+            } else if (info.current.uvi > 2 && $("#uvIndex").val() <= 3) {
+                $("#uvIndex").addClass("uvIndexG");
+            } else if (info.current.uvi > 5 && $("#uvIndex").val() <= 7) {
+                $("#uvIndex").addClass("uvIndexY");
+            } else {
+                $("#uvIndex").addClass("uvIndexR")
+            }
+
+
             dateConversion(info);
         });
 
