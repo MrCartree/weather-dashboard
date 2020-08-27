@@ -1,5 +1,3 @@
-// "api.openweathermap.org/data/2.5/forecast?q=London,us&mode=xml"
-// http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={YOUR API KEY}
 const apiKey = "e50c991dffb6aa38fe794e7859d8d281";
 let cityNameInput = $("#input");
 
@@ -19,14 +17,12 @@ const searchedCity = new Set();
 $("#srchBtn").click(function () {
     let forecast = forecastURL(cityNameInput.val());
     $.ajax(forecast).then(function (response) {
-        console.log(response);
         searchedCity.add(cityNameInput.val());
         $(".srchd").text("");
         searchedCity.forEach(function (aCity) {
             let liEl = $(`<li>${aCity}</li>`);
             $(".srchd").append(liEl);
-        })
-        console.log(searchedCity);
+        });
         let lattitude = response.city.coord.lat;
         let longitude = response.city.coord.lon;
         $("#cityName").text(response.city.name);
@@ -36,13 +32,8 @@ $("#srchBtn").click(function () {
 
         // second call gathing the information for the UV index and putting it on the page as well as gathering the Forecast information
         $.ajax(uvIndexUrl()).then(function (info) {
-            console.log(info);
             $("#uvIndex").text("UV Index: " + info.current.uvi);
-            // Creating a function that will take the info from this specific page and convert the Unix Time to an understandable date.
-
-            // for (let i = 1; i < 6; i++) {
             dateConversion(info);
-            // }
         });
 
         // second api call to use lon and lat
@@ -50,6 +41,7 @@ $("#srchBtn").click(function () {
             return `https://api.openweathermap.org/data/2.5/onecall?lat=${lattitude}&lon=${longitude}&exclude=minutely,hourly&appid=${apiKey}`
         }
 
+        // Creating a function that will take the info from this specific page and convert the Unix Time to an understandable date.
         let index = 1;
         function dateConversion(infoData) {
             $(".forecastCard").each(function() {
@@ -65,7 +57,5 @@ $("#srchBtn").click(function () {
                 index++
             });
         }
-
-
     });
 });
