@@ -10,7 +10,7 @@ function forecastURL(cityName) {
 
 // function to change temp from kelvin to fahrenheit
 function inFahrenheit(kelvin) {
-    return (kelvin - 273.15) * 1.80 + 32;
+    return ((kelvin - 273.15) * 1.80 + 32).toFixed(2);
 }
 
 
@@ -54,9 +54,6 @@ $("#srchBtn").click(function () {
                 $(this).find(".date").text(month + "/" + day + "/" + year);
                 $(this).find(".foreTemp").text("Temp: " + inFahrenheit(infoData.daily[index].temp.day));
                 $(this).find(".foreHumid").text("Humid: " + infoData.daily[index].humidity);
-                // console.log(month + "/" + day + "/" + year);
-                // console.log(inFahrenheit(infoData.daily[index].temp.day));
-                // console.log(infoData.daily[index].humidity);
                 index++
             });
         }
