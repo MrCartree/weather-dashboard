@@ -38,9 +38,9 @@ $("#srchBtn").click(function () {
             if (info.current.uvi <= 2) {
                 $("#uvIndex").addClass("uvIndexB")
                 console.log($("#uvIndex").val())
-            } else if (info.current.uvi > 2 && $("#uvIndex").val() <= 3) {
+            } else if (info.current.uvi > 2 && info.current.uvi <= 3) {
                 $("#uvIndex").addClass("uvIndexG");
-            } else if (info.current.uvi > 5 && $("#uvIndex").val() <= 7) {
+            } else if (info.current.uvi > 5 && info.current.uvi <= 7) {
                 $("#uvIndex").addClass("uvIndexY");
             } else {
                 $("#uvIndex").addClass("uvIndexR")
