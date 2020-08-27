@@ -34,7 +34,7 @@ $("#srchBtn").click(function () {
         // second call gathing the information for the UV index and putting it on the page as well as gathering the Forecast information
         $.ajax(uvIndexUrl()).then(function (info) {
             $("#uvIndex").text("UV Index: " + info.current.uvi);
-
+            // if statments to give a nice color to the UV Index dependant on the risk level.
             if (info.current.uvi <= 2) {
                 $("#uvIndex").addClass("uvIndexB")
                 console.log($("#uvIndex").val())
