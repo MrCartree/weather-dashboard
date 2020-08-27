@@ -13,12 +13,20 @@ function inFahrenheit(kelvin) {
     return ((kelvin - 273.15) * 1.80 + 32).toFixed(2);
 }
 
+const searchedCity = new Set();
 
 // api call on click of the search button which returns the information from the api library
 $("#srchBtn").click(function () {
     let forecast = forecastURL(cityNameInput.val());
     $.ajax(forecast).then(function (response) {
         console.log(response);
+        searchedCity.add(cityNameInput.val());
+        $(".srchd").text("");
+        searchedCity.forEach(function (aCity) {
+            let liEl = $(`<li>${aCity}</li>`);
+            $(".srchd").append(liEl);
+        })
+        console.log(searchedCity);
         let lattitude = response.city.coord.lat;
         let longitude = response.city.coord.lon;
         $("#cityName").text(response.city.name);
