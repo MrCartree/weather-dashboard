@@ -2,6 +2,8 @@
 
 Weather Dashboard is a sight dedicated to pulling weather information from a specific city for the current day as well as a forecast for the next five days.
 
+![Weather Dashboard](./assets/images/snapshot.PNG)
+
 Used skeleton css which can be found [here](http://getskeleton.com/) and I pulled the cdn for skeleton css [here](https://cdnjs.com/libraries/skeleton)
 
 The favicon was pulled from google images.
