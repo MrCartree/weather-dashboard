@@ -12,6 +12,6 @@ I used [this](https://coderrocketfuel.com/article/convert-a-unix-timestamp-to-a-
 
 I found the measurements of the UV index [here](https://www.theweathernetwork.com/us/forecasts/uv/utah/salt-lake-city) giving Salt Lake City as an example as well as a scale.
 
-This site is deployed [here]()
+This site is deployed [here](https://mrcartree.github.io/weather-dashboard/)
 
 Authored by [Zach LaFleur](https://github.com/MrCartree)

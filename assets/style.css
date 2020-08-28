@@ -12,9 +12,9 @@ body {
     background-color: ivory;
     border-radius: 15px;
 }
-.cityNameHeader {
-    display: flex;
-    justify-content: space-between;
+.weatherIcon {
+    height: 50px;
+    width: 50px;
 }
 .weatherImg {
     height: 25px;
