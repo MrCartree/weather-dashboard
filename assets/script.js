@@ -2,6 +2,16 @@ const apiKey = "e50c991dffb6aa38fe794e7859d8d281";
 const storedCities = localStorage.getItem("allCities");
 const citySet = new Set(JSON.parse(storedCities));
 let cityNameInput = $("#input");
+const weatherIcons = {
+    "clear sky": "assets/images/sunnyWeather.png",
+    "few clouds": "assets/images/cloudyWeather.png",
+    "scattered clouds": "assets/images/cloudyWeather.png",
+    "broken clouds": "assets/images/cloudyWeather.png",
+    "shower rain": "assets/images/rainyWeather.png",
+    rain: "assets/images/rainyWeather.png",
+    thunderstorm: "assets/images/stormyWeather.png",
+    snow: "assets/images/snowyWeather.png"
+}
 
 // this is the api url with my api key plugged in
 function forecastURL(cityName) {
@@ -11,6 +21,13 @@ function forecastURL(cityName) {
 // function to change temp from kelvin to fahrenheit
 function inFahrenheit(kelvin) {
     return ((kelvin - 273.15) * 1.80 + 32).toFixed(2);
+}
+// Date string function
+function dateString(dateObject) {
+    let month = dateObject.toLocaleString("en-US", { month: "numeric" });
+    let day = dateObject.toLocaleString("en-US", { day: "numeric" });
+    let year = dateObject.toLocaleString("en-US", { year: "numeric" });
+    return `${month}/${day}/${year}`;
 }
 
 function updateView(requestedCity) {
@@ -23,7 +40,8 @@ function updateView(requestedCity) {
         updateCityList();
         let lattitude = response.city.coord.lat;
         let longitude = response.city.coord.lon;
-        $("#cityName").text(response.city.name);
+        const now = new Date();
+        $("#cityName").text(`${response.city.name} ${dateString(now)}`);
         $("#temperature").text("Temperature: " + inFahrenheit(response.list[0].main.temp));
         $("#humidity").text("Humidity: " + response.list[0].main.humidity + "%");
         $("#windSpeed").text("Wind Speed: " + response.list[0].wind.speed + "MPH");
@@ -59,10 +77,7 @@ function updateView(requestedCity) {
                 let dateTime = infoData.daily[index].dt;
                 const milliseconds = dateTime * 1000;
                 const dateObject = new Date(milliseconds);
-                let month = dateObject.toLocaleString("en-US", { month: "numeric" });
-                let day = dateObject.toLocaleString("en-US", { day: "numeric" });
-                let year = dateObject.toLocaleString("en-US", { year: "numeric" });
-                $(this).find(".date").text(month + "/" + day + "/" + year);
+                $(this).find(".date").text(dateString(dateObject));
                 $(this).find(".foreTemp").text("Temp: " + inFahrenheit(infoData.daily[index].temp.day));
                 $(this).find(".foreHumid").text("Humid: " + infoData.daily[index].humidity);
                 index++
