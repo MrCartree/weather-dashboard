@@ -33,7 +33,7 @@ function dateString(dateObject) {
 function updateView(requestedCity) {
     let forecast = forecastURL(requestedCity);
     $.ajax(forecast).then(function (response) {
-        console.log(response);
+
         citySet.add(requestedCity);
         const JSONString = JSON.stringify([...citySet]);
         localStorage.setItem("allCities", JSONString);
@@ -42,13 +42,13 @@ function updateView(requestedCity) {
         let longitude = response.city.coord.lon;
         const now = new Date();
         $("#cityName").text(`${response.city.name} ${dateString(now)}`);
+        $("#weatherIcon").attr("src", weatherIcons[response.list[0].weather[0].description]);
         $("#temperature").text("Temperature: " + inFahrenheit(response.list[0].main.temp));
         $("#humidity").text("Humidity: " + response.list[0].main.humidity + "%");
         $("#windSpeed").text("Wind Speed: " + response.list[0].wind.speed + "MPH");
 
         // second call gathing the information for the UV index and putting it on the page as well as gathering the Forecast information
         $.ajax(uvIndexUrl()).then(function (info) {
-            console.log(info);
             $("#uvIndex").text("UV Index: " + info.current.uvi);
             // if statments to give a nice color to the UV Index dependant on the risk level.
             if (info.current.uvi <= 2) {
@@ -78,6 +78,7 @@ function updateView(requestedCity) {
                 const milliseconds = dateTime * 1000;
                 const dateObject = new Date(milliseconds);
                 $(this).find(".date").text(dateString(dateObject));
+                $(this).find(".weatherImg").attr("src", weatherIcons[infoData.daily[index].weather[0].description]);
                 $(this).find(".foreTemp").text("Temp: " + inFahrenheit(infoData.daily[index].temp.day));
                 $(this).find(".foreHumid").text("Humid: " + infoData.daily[index].humidity);
                 index++
@@ -91,7 +92,7 @@ function updateCityList() {
     citySet.forEach(function (aCity) {
         let liEl = $(`<li>${aCity}</li>`);
         $(".srchd").append(liEl);
-        liEl.click(function() {
+        liEl.click(function () {
             updateView(aCity);
         });
     });
