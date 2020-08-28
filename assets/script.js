@@ -1,6 +1,6 @@
 const apiKey = "e50c991dffb6aa38fe794e7859d8d281";
-const toStore = [];
-const searchedCity = new Set();
+const storedCities = localStorage.getItem("allCities");
+const citySet = new Set(JSON.parse(storedCities));
 let cityNameInput = $("#input");
 
 // this is the api url with my api key plugged in
@@ -13,23 +13,14 @@ function inFahrenheit(kelvin) {
     return ((kelvin - 273.15) * 1.80 + 32).toFixed(2);
 }
 
-// const searchedCities = (localStorage.getItem("searchedCities") && JSON.parse(localStorage.getItem("searchedCities")) || []);
-
-// api call on click of the search button which returns the information from the api library
-$("#srchBtn").click(function () {
-    let forecast = forecastURL(cityNameInput.val());
+function updateView(requestedCity) {
+    let forecast = forecastURL(requestedCity);
     $.ajax(forecast).then(function (response) {
         console.log(response);
-        searchedCity.add(cityNameInput.val());
-        $(".srchd").text("");
-
-        // searchedCity.keys().forEach(city => toStore.push(city));
-        // localStorage.setItem("searchedCity", JSON.stringify(toStore));
-
-        searchedCity.forEach(function (aCity) {
-            let liEl = $(`<li>${aCity}</li>`);
-            $(".srchd").append(liEl);
-        });
+        citySet.add(requestedCity);
+        const JSONString = JSON.stringify([...citySet]);
+        localStorage.setItem("allCities", JSONString);
+        updateCityList();
         let lattitude = response.city.coord.lat;
         let longitude = response.city.coord.lon;
         $("#cityName").text(response.city.name);
@@ -64,7 +55,7 @@ $("#srchBtn").click(function () {
         // Creating a function that will take the info from this specific page and convert the Unix Time to an understandable date.
         let index = 1;
         function dateConversion(infoData) {
-            $(".forecastCard").each(function() {
+            $(".forecastCard").each(function () {
                 let dateTime = infoData.daily[index].dt;
                 const milliseconds = dateTime * 1000;
                 const dateObject = new Date(milliseconds);
@@ -78,4 +69,23 @@ $("#srchBtn").click(function () {
             });
         }
     });
+}
+
+function updateCityList() {
+    $(".srchd").text("");
+    citySet.forEach(function (aCity) {
+        let liEl = $(`<li>${aCity}</li>`);
+        $(".srchd").append(liEl);
+        liEl.click(function() {
+            updateView(aCity);
+        });
+    });
+}
+
+// api call on click of the search button which returns the information from the api library
+$("#srchBtn").click(function () {
+    let chosenCity = cityNameInput.val();
+    updateView(chosenCity);
 });
+
+updateCityList();
