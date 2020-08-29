@@ -43,7 +43,7 @@ function updateView(requestedCity) {
         const now = new Date();
         $("#cityName").text(`${response.city.name} ${dateString(now)}`);
         $("#weatherIcon").attr("src", weatherIcons[response.list[0].weather[0].description]);
-        $("#temperature").text("Temperature: " + inFahrenheit(response.list[0].main.temp));
+        $("#temperature").text("Temperature: " + inFahrenheit(response.list[0].main.temp) + " \xB0F");
         $("#humidity").text("Humidity: " + response.list[0].main.humidity + "%");
         $("#windSpeed").text("Wind Speed: " + response.list[0].wind.speed + "MPH");
 
@@ -79,7 +79,7 @@ function updateView(requestedCity) {
                 const dateObject = new Date(milliseconds);
                 $(this).find(".date").text(dateString(dateObject));
                 $(this).find(".weatherImg").attr("src", weatherIcons[infoData.daily[index].weather[0].description]);
-                $(this).find(".foreTemp").text("Temp: " + inFahrenheit(infoData.daily[index].temp.day));
+                $(this).find(".foreTemp").text("Temp: " + inFahrenheit(infoData.daily[index].temp.day) + " \xB0F");
                 $(this).find(".foreHumid").text("Humid: " + infoData.daily[index].humidity);
                 index++
             });

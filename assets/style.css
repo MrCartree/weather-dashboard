@@ -1,3 +1,9 @@
+* {
+    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
     background-color: #dddddd;
 }
@@ -6,11 +12,23 @@ body {
     color: #dddddd;
     background-color: #1a2369;
 }
+#citySearchBox {
+    padding-left: 20px;
+}
+#citySearch {
+    padding-left: 15px;
+}
 .srchCont {
     margin-bottom: 20px;
     border: 1px solid grey;
     background-color: ivory;
     border-radius: 15px;
+}
+#forecastInfo {
+    padding-right: 20px;
+}
+#cityFore {
+    padding-left: 15px;
 }
 .weatherIcon {
     height: 50px;
@@ -36,6 +54,9 @@ body {
     text-align: center;
     line-height: normal;
 }
+#forecastFive {
+    padding: 15px;
+}
 .fiveDayForecast {
     border: 1px solid grey;
     background-color: ivory;
@@ -49,14 +70,22 @@ body {
     display: inline-block;
 }
 .uvIndexG {
+    border-radius: 15px;
+    width: 110px;
     background-color: #58c750;
 }
 .uvIndexY {
+    border-radius: 15px;
+    width: 110px;
     background-color: #d9bd50;
 }
 .uvIndexO {
-background-color: #f07930;
+    border-radius: 15px;
+    width: 110px;
+    background-color: #f07930;
 }
 .uvIndexR {
+    border-radius: 15px;
+    width: 110px;
     background-color: #d95050;
 }
